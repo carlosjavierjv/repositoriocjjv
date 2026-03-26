@@ -19,7 +19,7 @@
 
     // Datos del usuario de Telegram
     const user = tg.initDataUnsafe?.user;
-    document.getElementById('username').textContent = user?.first_name || 'Usuario';
+    document.getElementById('username').textContent = user?.first_name  'Usuario';
 
     document.getElementById('btn').addEventListener('click', () => {
       // Envía datos de vuelta al bot y cierra la app
@@ -32,6 +32,48 @@ fetch('https://remiss-ismael-moonshiny.ngrok-free.dev/api/v1/miniapp/datos', {
     },
     body: JSON.stringify({
         chatId: tg.initDataUnsafe?.user?.id,
+        campo1: "valor1"
+    })
+}).then(res => res.json())
+  .then(data => console.log(data));
+
+    });
+  </script>
+</body>
+</html><!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <h1>CLIENTE <span id="username"></span></h1>
+  <text id="txtNombre">Nombre </text>
+  <input type='text' id='nombre' name='nombre'> 
+  <input type='text' id='fechaNacimiento' name='fechaNacimiento'> 
+  <button id="btn">Enviar datos al bot</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    // Datos del usuario de Telegram
+    const user = tg.initDataUnsafe?.user;
+    document.getElementById('username').textContent = user?.first_name  'Usuario';
+
+    document.getElementById('btn').addEventListener('click', () => {
+      // Envía datos de vuelta al bot y cierra la app
+      tg.sendData(JSON.stringify({ action: 'button_clicked', userId: user?.id }));
+fetch('https://remiss-ismael-moonshiny.ngrok-free.dev/api/v1/miniapp/datos', {
+    method: 'POST',
+    headers: { 
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'   // <-- esto es clave
+    },
+    body: JSON.stringify({
+        chatId: '7928720153:AAHnhfOqG2OOpOvF2cp3NKKDfHYuzomU0-o',
         campo1: "valor1"
     })
 }).then(res => res.json())
