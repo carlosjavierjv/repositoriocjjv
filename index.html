@@ -17,19 +17,19 @@
     const tg = window.Telegram.WebApp;
     tg.ready();
 
-   
-
     document.getElementById('btn').addEventListener('click', () => {
       // Envía datos de vuelta al bot y cierra la app
       tg.sendData(JSON.stringify({ action: 'button_clicked', userId: '7928720153:AAHnhfOqG2OOpOvF2cp3NKKDfHYuzomU0-o'}));
-fetch('https://remiss-ismael-moonshiny.ngrok-free.dev/api/v1/miniapp/datos', {
+
+
+      fetch('https://remiss-ismael-moonshiny.ngrok-free.dev/api/v1/miniapp/datos', {
     method: 'POST',
     headers: { 
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 'true'   // <-- esto es clave
     },
     body: JSON.stringify({
-        chatId: tg.initDataUnsafe?.user?.id,
+        chatId:"7928720153:AAHnhfOqG2OOpOvF2cp3NKKDfHYuzomU0-o",
         campo1: "valor1"
     })
 }).then(res => res.json())
